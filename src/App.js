@@ -13,6 +13,7 @@ import Button from './components/Button/Button';
 import SectionTitle from './components/SectionTitle/SectionTitle';
 import Banner from './components/Banner/Banner';
 import BannerCard from './components/BannerCard/BannerCard';
+import Separator from './components/Separator/Separator';
 
 import { getUsers, getUserRideInGroup, getUserDayOfTheWeek } from './services/user';
 import { getPosts } from './services/post';
@@ -134,6 +135,7 @@ const App = () => {
             {renderDeleteUserModal()}
 
             <SectionTitle title="Registration" />
+
             <Banner>
                 <BannerCard title="Need help?" icon={faLifeRing}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -145,6 +147,8 @@ const App = () => {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </BannerCard>
             </Banner>
+
+            <Separator />
         </div>
     );
 }
