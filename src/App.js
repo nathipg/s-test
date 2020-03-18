@@ -9,6 +9,7 @@ import TableCell from './components/TableCell/TableCell';
 import ClickableIcon from './components/ClickableIcon/ClickableIcon';
 import Modal from './components/Modal/Modal';
 import Button from './components/Button/Button';
+import SectionTitle from './components/SectionTitle/SectionTitle';
 
 import { getUsers, getUserRideInGroup, getUserDayOfTheWeek } from './services/user';
 import { getPosts } from './services/post';
@@ -107,7 +108,7 @@ const App = () => {
     
     return (
         <div className="App">
-            {renderDeleteUserModal()}
+            <SectionTitle title="Users" />
             <Table>
                 <TableHead>
                     <TableRow>
@@ -127,6 +128,7 @@ const App = () => {
                     {renderUsersRows()}
                 </TableBody>
             </Table>
+            {renderDeleteUserModal()}
         </div>
     );
 }

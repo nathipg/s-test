@@ -1,6 +1,9 @@
 @import 'variables.scss';
 
 .App {
-    font-family: Helvetica, Arial, sans-serif;
-    margin: $margin-x
+    margin: $margin-xs;
+
+    @media #{$mq-lg} {
+        margin: $margin-lg;
+    }
 }
