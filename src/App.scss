@@ -1,9 +1,9 @@
 @import 'variables.scss';
 
 .App {
-    margin: $margin-xs;
+    margin: $margin-horizontal;
 
     @media #{$mq-lg} {
-        margin: $margin-lg;
+        margin: $margin-horizontal-lg;
     }
 }

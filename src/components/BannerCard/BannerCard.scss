@@ -1,0 +1,27 @@
+@import '../../variables.scss';
+
+.BannerCard {
+    
+    h1 {
+        font-weight: 300;
+        color: $green;
+    }
+
+    svg {
+        color: $green;
+        margin-right: 1rem;
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    @media #{$mq-lg} {
+        width: 25vw;
+    }
+}

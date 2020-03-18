@@ -1,0 +1,10 @@
+@import '../../variables.scss';
+
+.Banner {
+    
+
+    @media #{$mq-lg} {
+        display: flex;
+        justify-content: space-between;
+    }
+}

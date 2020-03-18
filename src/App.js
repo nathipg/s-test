@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faSmile, faLifeRing } from '@fortawesome/free-regular-svg-icons';
 
 import Table from './components/Table/Table';
 import TableHead from './components/TableHead/TableHead';
@@ -10,6 +11,8 @@ import ClickableIcon from './components/ClickableIcon/ClickableIcon';
 import Modal from './components/Modal/Modal';
 import Button from './components/Button/Button';
 import SectionTitle from './components/SectionTitle/SectionTitle';
+import Banner from './components/Banner/Banner';
+import BannerCard from './components/BannerCard/BannerCard';
 
 import { getUsers, getUserRideInGroup, getUserDayOfTheWeek } from './services/user';
 import { getPosts } from './services/post';
@@ -129,6 +132,19 @@ const App = () => {
                 </TableBody>
             </Table>
             {renderDeleteUserModal()}
+
+            <SectionTitle title="Registration" />
+            <Banner>
+                <BannerCard title="Need help?" icon={faLifeRing}>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </BannerCard>
+                <BannerCard title="Why register?" icon={faHeartbeat}>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </BannerCard>
+                <BannerCard title="What people are saying..." icon={faSmile}>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </BannerCard>
+            </Banner>
         </div>
     );
 }

@@ -7,7 +7,11 @@ const SectionTitle = props => {
         <div className="SectionTitle">
             <h1>{props.title}</h1>
             <hr />
-            {props.children ? props.children : null}
+            {
+                props.children ? 
+                    <div className="sideElement">{props.children}</div>
+                    : null
+            }
         </div>
     );
 };

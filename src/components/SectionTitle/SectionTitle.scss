@@ -3,6 +3,7 @@
 .SectionTitle {
     display: flex;
     align-items: center;
+    margin-top: 4rem;
 
     h1 {
         font-weight: 400;
@@ -10,9 +11,14 @@
     }
 
     hr {
-        color: $gray;
         height: 3px;
         width: 90vw;
-        margin: 0 7vw;
+        margin-left: 5vw;
+        background-color: $gray;
+        border: none;
     }
+}
+
+.SectionTitle .sideElement {
+    margin-left: 5vw;
 }
