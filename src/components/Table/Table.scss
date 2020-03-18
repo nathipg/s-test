@@ -1,0 +1,10 @@
+.Table {
+    overflow-x: auto;
+    display: flex;
+    flex-shrink: 0;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+}

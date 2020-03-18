@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.TableBody {
+    & > * {
+
+        svg {
+            display: none;
+        }
+
+        &:nth-child(even) {
+            background-color: $light-gray;
+        }
+
+        &:hover {
+            background-color: $gray;
+
+            svg {
+                display: inline;
+            }
+        }
+    }
+}

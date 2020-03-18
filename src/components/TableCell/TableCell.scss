@@ -1,0 +1,9 @@
+@import '../../variables.scss';
+
+.TableCell {
+    padding: 1.5rem;
+
+    &.highlighted {
+        color: $green;
+    }
+}
