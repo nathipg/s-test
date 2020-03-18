@@ -3,20 +3,20 @@
 .Button {
     background-color: transparent;
     border: none;
-    border-radius: 2px;
-    color: white;
+    border-radius: 5px;
     outline: none;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
-    margin: 10px;
-    font-weight: bold;
+    margin-right: 10px;
+    padding: 0.5rem 1.5rem;
 }
 
-.success {
+.primary {
+    color: white;
     background-color: $green;
 }
 
-.danger {
-    background-color: $red;
+.secondary {
+    color: $dark-gray;
+    background-color: $light-gray;
 }

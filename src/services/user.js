@@ -11,23 +11,26 @@ export const getUserRideInGroup = () => {
 };
 
 export const getUserDayOfTheWeek = () => {
-    const options = [null, 'Every day', 'Week days', 'Weekends'];
-    const randomNumber = Math.floor(Math.random() * 4);
-    let chosenOption = options[randomNumber];
+    const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const chosenDays = [];
+    let chosenOption = '';
 
-    if(chosenOption === null) {
-        const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        const chosenDays = [];
+    do {
+        weekDays.forEach(day => {
+            const randonBoolean = Math.random() >= 0.5;
+            if(randonBoolean) {
+                chosenDays.push(day);
+            }
+        });
+    } while(chosenDays.length === 0);
 
-        do {
-            weekDays.forEach(day => {
-                const randonBoolean = Math.random() >= 0.5;
-                if(randonBoolean) {
-                    chosenDays.push(day);
-                }
-            });
-        } while(chosenDays.length === 0);
-
+    if(chosenDays.length === 7) {
+        chosenOption = 'Every day';
+    } else if(chosenDays.length === 5 && !chosenDays.includes('Sat') && !chosenDays.includes('Sun')) {
+        chosenOption = 'Week days';
+    } else if(chosenDays.length === 2 && chosenDays.includes('Sat') && chosenDays.includes('Sun')) {
+        chosenOption = 'Weekends';
+    } else {
         chosenOption = chosenDays.join(', ');
     }
 

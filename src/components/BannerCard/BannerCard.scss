@@ -5,6 +5,7 @@
     h1 {
         font-weight: 300;
         color: $green;
+        font-size: 1.7rem;
     }
 
     svg {
@@ -19,9 +20,5 @@
         p {
             margin: 0;
         }
-    }
-
-    @media #{$mq-lg} {
-        width: 25vw;
     }
 }

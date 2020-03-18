@@ -1,10 +1,11 @@
 @import '../../variables.scss';
 
 .Banner {
-    
-
     @media #{$mq-lg} {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-column-gap: 5%;
+        grid-template-rows: auto;
+        grid-row-gap: 0;
     }
 }

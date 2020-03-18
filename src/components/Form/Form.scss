@@ -1,0 +1,12 @@
+@import '../../variables.scss';
+
+.Form {
+    border-top: 2px solid $gray;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 5rem 0;
+
+    @media #{$mq-lg} {
+        width: 70vw;
+    }
+}

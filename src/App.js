@@ -13,7 +13,9 @@ import Button from './components/Button/Button';
 import SectionTitle from './components/SectionTitle/SectionTitle';
 import Banner from './components/Banner/Banner';
 import BannerCard from './components/BannerCard/BannerCard';
-import Separator from './components/Separator/Separator';
+import Input from './components/Input/Input';
+import Form from './components/Form/Form';
+import FormFields from './components/FormFields/FormFields';
 
 import { getUsers, getUserRideInGroup, getUserDayOfTheWeek } from './services/user';
 import { getPosts } from './services/post';
@@ -95,11 +97,11 @@ const App = () => {
                 modalClosed={() => setShowDeleteUserModal(false)}>
                     <p>Do you really want to delete the user?</p>
                     <Button 
-                        type="danger"
-                        clicked={() => deleteUser()}>Yes</Button>
-                    <Button 
-                        type="success"
+                        type="primary"
                         clicked={() => setShowDeleteUserModal(false)}>No</Button>
+                    <Button 
+                        type="secondary"
+                        clicked={() => deleteUser()}>Yes</Button>
             </Modal>
         );
     }
@@ -108,6 +110,14 @@ const App = () => {
         setUsers(users.filter(user => user.id !== userToDelete));
         setUserToDelete(null);
         setShowDeleteUserModal(false);
+    }
+
+    const registerUser = () => {
+
+    }
+
+    const discardForm = () => {
+
     }
     
     return (
@@ -148,7 +158,23 @@ const App = () => {
                 </BannerCard>
             </Banner>
 
-            <Separator />
+            <Form submitted={registerUser}>
+                <FormFields>
+                    <Input label="Username" />
+                    <Input label="City" />
+                    <Input label="Name" />
+                    <div>RIDE IN GROUP</div>
+                    <Input label="E-mail" />
+                    <div>DAYS OF THE WEEK</div>
+                </FormFields>
+
+                <Button 
+                    type="primary"
+                    clicked={() => console.log('TODO')}>Save</Button>
+                <Button 
+                    type="secondary"
+                    clicked={() => discardForm()}>Discard</Button>
+            </Form>
         </div>
     );
 }
