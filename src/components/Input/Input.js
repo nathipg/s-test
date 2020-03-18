@@ -7,6 +7,7 @@ const Input = props => {
         <div className="Input">
             <label>{props.label}</label>
             <input type={props.type} value={props.value} />
+            <p>{props.instruction}</p>
         </div>
     );
 };

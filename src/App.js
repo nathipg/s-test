@@ -160,7 +160,7 @@ const App = () => {
 
             <Form submitted={registerUser}>
                 <FormFields>
-                    <Input label="Username" />
+                    <Input label="Username" instruction="Teste teste teste" />
                     <Input label="City" />
                     <Input label="Name" />
                     <div>RIDE IN GROUP</div>
