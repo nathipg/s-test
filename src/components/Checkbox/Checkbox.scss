@@ -1,0 +1,57 @@
+@import '../../variables.scss';
+
+$md-checkbox-checked-border-color: $green;
+$md-checkbox-checked-color: #000;
+$md-checkbox-border-color: $gray;
+$md-checkbox-border-size: 1px;
+$md-checkbox-size: 20px;
+$md-checkbox-checked-size: 10px;
+
+.Checkbox {
+    margin: 16px 0;
+
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked + label:before, &:hover + label:before {
+            border-color: $md-checkbox-checked-border-color;
+        }
+
+        &:checked + label:after {
+            transform: scale(1);
+        }
+    }
+
+    label {
+        height: $md-checkbox-size;
+        position: relative;
+        padding: 0 ($md-checkbox-size + 10px);
+        margin-bottom: 0;
+        cursor: pointer;
+
+        &:before, &:after {
+            position: absolute;            
+            content: '';  
+            border-radius: 0.25rem;
+            transition: all .3s ease;
+            transition-property: transform, border-color;
+        }
+
+        &:before {
+            left: 0;
+            top: 0;
+            width: $md-checkbox-size;
+            height: $md-checkbox-size;
+            border: $md-checkbox-border-size solid $md-checkbox-border-color;
+        }
+
+        &:after {
+            top: ($md-checkbox-size + $md-checkbox-border-size * 2) / 2 - $md-checkbox-checked-size / 2;
+            left: ($md-checkbox-size + $md-checkbox-border-size * 2) / 2 - $md-checkbox-checked-size / 2;
+            width: $md-checkbox-checked-size;
+            height: $md-checkbox-checked-size;
+            transform: scale(0);
+            background:$md-checkbox-checked-color;
+        }
+    }
+}

@@ -314,8 +314,14 @@ const App = () => {
     }
 
     const inputChangedHandler = (event, inputIdentifier) => {
+        const value = event.target.type === 'checkbox' ?
+            registerUserForm.fields[inputIdentifier].value.includes(event.target.value) ?
+                [...registerUserForm.fields[inputIdentifier].value.filter(e => e !== event.target.value)] // Remove value
+                : [...registerUserForm.fields[inputIdentifier].value, event.target.value] // Add value
+            : event.target.value;
+
         const updatedInput = updateObject(registerUserForm.fields[inputIdentifier], {
-            value: event.target.value,
+            value,
             valid: checkValidity(event.target.value, registerUserForm.fields[inputIdentifier].validation),
             touched: true
         });

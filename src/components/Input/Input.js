@@ -1,6 +1,7 @@
 import React from 'react';
 
 import RadioButton from '../RadioButton/RadioButton';
+import Checkbox from '../Checkbox/Checkbox';
 
 import './Input.scss';
 
@@ -38,6 +39,21 @@ const Input = props => {
                 </div>
             );
             break;
+        case 'checkbox':
+                input = (
+                    <div className="checkboxGroup">
+                        {props.config.options.map((option, key) => (
+                            <Checkbox
+                                key={key}
+                                label={option.displayValue}
+                                id={props.name + "_" + option.value}
+                                changed={props.changed}
+                                value={option.value}
+                                isSelected={props.value.includes(option.value)} />
+                        ))}
+                    </div>
+                );
+                break;
         default:
             input = <input 
                 className={classes.join(' ')} 
