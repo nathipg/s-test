@@ -59,7 +59,7 @@ const App = () => {
                 label: 'City',
                 value: '',
                 validation: {
-                    required: true
+                    required: false
                 },
                 valid: false,
                 touched: false,
@@ -81,7 +81,23 @@ const App = () => {
                 inputFocused: false,
                 instruction: 'Type your name'
             },
-            //rideInGroup: {},
+            rideInGroup: {
+                type: 'radio',
+                config: {
+                    options: [
+                        {value: 'always', displayValue: 'Always'},
+                        {value: 'sometimes', displayValue: 'Sometimes'},
+                        {value: 'never', displayValue: 'Never'}
+                    ]
+                },
+                label: 'Ride in group?',
+                value: 'always',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
+            },
             email: {
                 type: 'input',
                 config: {
@@ -98,7 +114,27 @@ const App = () => {
                 inputFocused: false,
                 instruction: 'Type your e-mail'
             },
-            //daysOfTheWeek: {}
+            daysOfTheWeek: {
+                type: 'checkbox',
+                config: {
+                    options: [
+                        {value: 'sun', displayValue: 'Sun'},
+                        {value: 'mon', displayValue: 'Mon'},
+                        {value: 'tue', displayValue: 'Tue'},
+                        {value: 'wed', displayValue: 'Wed'},
+                        {value: 'thu', displayValue: 'Thu'},
+                        {value: 'fri', displayValue: 'Fri'},
+                        {value: 'sat', displayValue: 'Sat'}
+                    ]
+                },
+                label: 'Days of the week',
+                value: [],
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
+            }
         }
     });
 
@@ -221,6 +257,7 @@ const App = () => {
                     {inputArray.map(input => (
                         <Input 
                             key={input.id}
+                            name={input.id}
                             label={input.config.label}
                             type={input.config.type} 
                             config={input.config.config}  
