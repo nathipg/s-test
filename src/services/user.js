@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { weekDaysGroup } from '../util/utility';
+
 export const getUsers = async () => {
     return await axios.get('https://jsonplaceholder.typicode.com/users');
 };
@@ -11,9 +13,8 @@ export const getUserRideInGroup = () => {
 };
 
 export const getUserDayOfTheWeek = () => {
-    const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
     const chosenDays = [];
-    let chosenOption = '';
 
     do {
         weekDays.forEach(day => {
@@ -24,15 +25,5 @@ export const getUserDayOfTheWeek = () => {
         });
     } while(chosenDays.length === 0);
 
-    if(chosenDays.length === 7) {
-        chosenOption = 'Every day';
-    } else if(chosenDays.length === 5 && !chosenDays.includes('Sat') && !chosenDays.includes('Sun')) {
-        chosenOption = 'Week days';
-    } else if(chosenDays.length === 2 && chosenDays.includes('Sat') && chosenDays.includes('Sun')) {
-        chosenOption = 'Weekends';
-    } else {
-        chosenOption = chosenDays.join(', ');
-    }
-
-    return chosenOption;
+    return weekDaysGroup(chosenDays);
 };

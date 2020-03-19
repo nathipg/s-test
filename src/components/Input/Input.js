@@ -30,6 +30,7 @@ const Input = props => {
                     {props.config.options.map((option, key) => (
                         <RadioButton
                             key={key}
+                            classes={classes}
                             label={option.displayValue}
                             id={props.name + "_" + option.value}
                             changed={props.changed}
@@ -45,6 +46,7 @@ const Input = props => {
                         {props.config.options.map((option, key) => (
                             <Checkbox
                                 key={key}
+                                classes={classes}
                                 label={option.displayValue}
                                 id={props.name + "_" + option.value}
                                 changed={props.changed}

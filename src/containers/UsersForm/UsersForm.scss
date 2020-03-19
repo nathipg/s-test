@@ -1,6 +1,6 @@
-@import 'variables.scss';
+@import '../../variables.scss';
 
-.App {
+.UsersForm {
     margin: $margin-horizontal;
 
     @media #{$mq-lg} {

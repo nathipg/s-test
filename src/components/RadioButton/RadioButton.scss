@@ -53,5 +53,9 @@ $md-radio-checked-size: 10px;
             transform: scale(0);
             background:$md-radio-checked-color;
         }
+
+        &.invalid:before {
+            border-color: $red;
+        }
     }
 }

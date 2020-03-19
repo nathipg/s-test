@@ -13,7 +13,11 @@ export const checkValidity = (value, rules) => {
     }
 
     if(rules.required) {
-        isValid = value.trim() !== '' && isValid;
+        if(typeof value === 'object') {
+            isValid = value.length > 0 && isValid;
+        } else {
+            isValid = value.trim() !== '' && isValid;
+        }
     }
 
     if(rules.email) {
@@ -23,3 +27,21 @@ export const checkValidity = (value, rules) => {
 
     return isValid;
 };
+
+export const weekDaysGroup = days => {
+    let group = '';
+
+    if(days.length === 7) {
+        group = 'Every day';
+    } else if(days.length === 5 && !days.includes('sat') && !days.includes('sun')) {
+        group = 'Week days';
+    } else if(days.length === 2 && days.includes('sat') && days.includes('sun')) {
+        group = 'Weekends';
+    } else {
+        group = days.map(day => capitalize(day)).join(', ');
+    }
+
+    return group;
+};
+
+export const capitalize = string => string[0].toUpperCase() + string.slice(1);

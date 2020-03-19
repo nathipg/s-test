@@ -5,7 +5,7 @@ import './Form.scss';
 const Form = props => {
     return (
         <div className="Form">
-            <form>
+            <form onSubmit={props.submitted}>
                 {props.children}
             </form>
         </div>

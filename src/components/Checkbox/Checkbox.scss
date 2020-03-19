@@ -52,5 +52,9 @@ $md-checkbox-checked-size: 10px;
             font-weight: bold;
             transform: scale(0);
         }
+
+        &.invalid:before {
+            border-color: $red;
+        }
     }
 }
