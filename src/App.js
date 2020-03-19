@@ -22,6 +22,8 @@ import { getPosts } from './services/post';
 import { getAlbums } from './services/album';
 import { getPhotos } from './services/photo';
 
+import { updateObject, checkValidity } from './util/utility';
+
 import './App.scss';
 
 const App = () => {
@@ -31,6 +33,74 @@ const App = () => {
     const [photos, setPhotos] = useState([]);
     const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
+    const [registerUserForm, setRegisterUserForm] = useState({
+        formIsValid: false,
+        fields: {
+            username: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: 'Username',
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
+                inputFocused: false,
+                instruction: 'Type your username'
+            },
+            city: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: 'City',
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
+                inputFocused: false,
+                instruction: 'Type your city name'
+            },
+            name: {
+                type: 'input',
+                config: {
+                    type: 'text',
+                },
+                label: 'Name',
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
+                inputFocused: false,
+                instruction: 'Type your name'
+            },
+            //rideInGroup: {},
+            email: {
+                type: 'input',
+                config: {
+                    type: 'email',
+                },
+                label: 'E-mail',
+                value: '',
+                validation: {
+                    required: true,
+                    email: true
+                },
+                valid: false,
+                touched: false,
+                inputFocused: false,
+                instruction: 'Type your e-mail'
+            },
+            //daysOfTheWeek: {}
+        }
+    });
 
     const fetchUsers = useCallback(async () => {
         const response = await getUsers();
@@ -106,6 +176,99 @@ const App = () => {
         );
     }
 
+    const renderFormUser = () => {
+        const inputArray = [];
+
+        for(let key in registerUserForm.fields) {
+            inputArray.push({
+                id: key,
+                config: registerUserForm.fields[key]
+            });
+        }
+
+        return (
+            <Form submitted={registerUser}>
+                <FormFields>
+                    {inputArray.map(input => (
+                        <Input 
+                            key={input.id}
+                            label={input.config.label}
+                            type={input.config.type} 
+                            config={input.config.config}  
+                            value={input.config.value}
+                            invalid={!input.config.valid}
+                            shouldValidate={input.config.validation}
+                            inputFocused={input.config.inputFocused}
+                            instruction={input.config.instruction}
+                            touched={input.config.touched}
+                            changed={event => inputChangedHandler(event, input.id)}
+                            focused={event => inputFocused(event, input.id)}
+                            blured={event => inputBlured(event, input.id)} />
+                    ))}
+                </FormFields>
+
+                <Button 
+                    type="primary"
+                    clicked={() => console.log('TODO')}>Save</Button>
+                <Button 
+                    type="secondary"
+                    clicked={() => discardForm()}>Discard</Button>
+            </Form>
+        );
+    }
+
+    const inputFocused = (event, inputIdentifier) => {
+        const updatedInput = updateObject(registerUserForm.fields[inputIdentifier], {
+            inputFocused: true
+        });
+
+        const updatedRegisterUserForm = updateObject(registerUserForm.fields, {
+            [inputIdentifier]: updatedInput
+        });
+
+        setRegisterUserForm({
+            fields: updatedRegisterUserForm,
+            formIsValid: registerUserForm.formIsValid
+        });
+    }
+
+    const inputBlured = (event, inputIdentifier) => {
+        const updatedInput = updateObject(registerUserForm.fields[inputIdentifier], {
+            inputFocused: false
+        });
+
+        const updatedRegisterUserForm = updateObject(registerUserForm.fields, {
+            [inputIdentifier]: updatedInput
+        });
+
+        setRegisterUserForm({
+            fields: updatedRegisterUserForm,
+            formIsValid: registerUserForm.formIsValid
+        });
+    }
+
+    const inputChangedHandler = (event, inputIdentifier) => {
+        const updatedInput = updateObject(registerUserForm.fields[inputIdentifier], {
+            value: event.target.value,
+            valid: checkValidity(event.target.value, registerUserForm.fields[inputIdentifier].validation),
+            touched: true
+        });
+
+        const updatedRegisterUserForm = updateObject(registerUserForm.fields, {
+            [inputIdentifier]: updatedInput
+        });
+
+        let formIsValid = true;
+        for(let inputIdentifier in updatedRegisterUserForm) {
+            formIsValid = updatedRegisterUserForm[inputIdentifier].valid && formIsValid;
+        }
+
+        setRegisterUserForm({
+            fields: updatedRegisterUserForm,
+            formIsValid
+        });
+    }
+
     const deleteUser = () => {
         setUsers(users.filter(user => user.id !== userToDelete));
         setUserToDelete(null);
@@ -158,23 +321,7 @@ const App = () => {
                 </BannerCard>
             </Banner>
 
-            <Form submitted={registerUser}>
-                <FormFields>
-                    <Input label="Username" instruction="Teste teste teste" />
-                    <Input label="City" />
-                    <Input label="Name" />
-                    <div>RIDE IN GROUP</div>
-                    <Input label="E-mail" />
-                    <div>DAYS OF THE WEEK</div>
-                </FormFields>
-
-                <Button 
-                    type="primary"
-                    clicked={() => console.log('TODO')}>Save</Button>
-                <Button 
-                    type="secondary"
-                    clicked={() => discardForm()}>Discard</Button>
-            </Form>
+            {renderFormUser()}
         </div>
     );
 }

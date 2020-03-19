@@ -6,13 +6,30 @@
 
     input {
         border: 1px solid $gray;
+        border-radius: 0.4rem;
+        outline: none;
+        padding: 0.7rem;
+        margin-bottom: 2.2rem;
         
         &:focus {
             border-color: $green;
+            margin-bottom: 0;
+        }
+
+        &.invalid {
+            border-color: $red;
+            background-color: $light-red;
         }
     }
 
     label {
         font-weight: 400;
+        margin-bottom: 0.25rem;
+    }
+
+    .instruction {
+        font-size: 0.9rem;
+        color: $dark-gray;
+        margin: 0.5rem 0;
     }
 }
