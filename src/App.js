@@ -104,7 +104,14 @@ const App = () => {
 
     const fetchUsers = useCallback(async () => {
         const response = await getUsers();
-        setUsers(response.data);
+        const treatedUsers = response.data.map(user => {
+            return {
+                ...user,
+                rideInGroup: getUserRideInGroup(),
+                daysOfTheWeek: getUserDayOfTheWeek()
+            };
+        });
+        setUsers(treatedUsers);
     }, []);
 
     const fetchPosts = useCallback(async () => {
@@ -129,8 +136,8 @@ const App = () => {
         fetchPhotos();
     }, [fetchUsers, fetchPosts, fetchAlbums, fetchPhotos]);
 
-    const renderUsersRows = () => {
-        return users.map(user => {
+    const renderUsersTable = () => {
+        const usersRows = users.map(user => {
             const userAlbums = albums.filter(album => album.userId === user.id);
             const userAlbumsIds = userAlbums.map(album => album.id);
 
@@ -144,8 +151,8 @@ const App = () => {
                         </a>
                     </TableCell>
                     <TableCell highlighted>{user.address.city}</TableCell>
-                    <TableCell>{getUserRideInGroup()}</TableCell>
-                    <TableCell>{getUserDayOfTheWeek()}</TableCell>
+                    <TableCell>{user.rideInGroup}</TableCell>
+                    <TableCell>{user.daysOfTheWeek}</TableCell>
                     <TableCell highlighted>{posts.filter(post => post.userId === user.id).length}</TableCell>
                     <TableCell highlighted>{userAlbums.length}</TableCell>
                     <TableCell>{photos.filter(photo => userAlbumsIds.includes(photo.albumId)).length}</TableCell>
@@ -158,6 +165,28 @@ const App = () => {
                 </TableRow>
             );
         });
+
+        return (
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Username</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>E-mail</TableCell>
+                        <TableCell>City</TableCell>
+                        <TableCell>Ride in group</TableCell>
+                        <TableCell>Day of the week</TableCell>
+                        <TableCell>Posts</TableCell>
+                        <TableCell>Albums</TableCell>
+                        <TableCell>Photos</TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {usersRows}
+                </TableBody>
+            </Table>
+        );
     }
 
     const renderDeleteUserModal = () => {
@@ -286,25 +315,7 @@ const App = () => {
     return (
         <div className="App">
             <SectionTitle title="Users" />
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Username</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>E-mail</TableCell>
-                        <TableCell>City</TableCell>
-                        <TableCell>Ride in group</TableCell>
-                        <TableCell>Day of the week</TableCell>
-                        <TableCell>Posts</TableCell>
-                        <TableCell>Albums</TableCell>
-                        <TableCell>Photos</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {renderUsersRows()}
-                </TableBody>
-            </Table>
+            {renderUsersTable()}
             {renderDeleteUserModal()}
 
             <SectionTitle title="Registration" />
