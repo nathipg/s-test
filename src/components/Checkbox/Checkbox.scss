@@ -31,7 +31,7 @@ $md-checkbox-checked-size: 10px;
 
         &:before, &:after {
             position: absolute;            
-            content: '';  
+            content: '';
             border-radius: 0.25rem;
             transition: all .3s ease;
             transition-property: transform, border-color;
@@ -46,12 +46,11 @@ $md-checkbox-checked-size: 10px;
         }
 
         &:after {
-            top: ($md-checkbox-size + $md-checkbox-border-size * 2) / 2 - $md-checkbox-checked-size / 2;
-            left: ($md-checkbox-size + $md-checkbox-border-size * 2) / 2 - $md-checkbox-checked-size / 2;
-            width: $md-checkbox-checked-size;
-            height: $md-checkbox-checked-size;
+            content: $check-icon;
+            top: $md-checkbox-size / 2 - $md-checkbox-checked-size;
+            left: $md-checkbox-size / 2 - $md-checkbox-checked-size / 2;
+            font-weight: bold;
             transform: scale(0);
-            background:$md-checkbox-checked-color;
         }
     }
 }
