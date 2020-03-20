@@ -35,7 +35,6 @@ const UsersList = () => {
     const [userListFilterFocused, setUserListFilterFocused] = useState('');
 
     const renderUsersTable = () => {
-        console.log(userListFilter);
         const usersFiltered = userListFilter === '' ? 
             users
             : users.filter(user => strIncludesStr(user.name, userListFilter) || strIncludesStr(user.username, userListFilter));

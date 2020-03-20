@@ -17,7 +17,6 @@ const DropdownMenu = props => {
     useEffect(() => {
         document.addEventListener('keydown', event => {
             if(event.keyCode === 27) {
-                console.log('ESC');
                 props.clicked();
             }
         }, false);
