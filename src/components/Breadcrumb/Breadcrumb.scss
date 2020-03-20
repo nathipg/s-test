@@ -1,0 +1,28 @@
+@import '../../variables.scss';
+
+.Breadcrumb {
+    background-color: $light-gray;
+    padding: 0.75rem $margin-horizontal;
+    
+    .separator {
+        margin: 0 1.5rem;
+        color: $dark-gray;
+    }
+
+    svg {
+        color: $green;
+    }  
+
+    a {
+        color: black;
+
+        &:hover {
+            color: $green;
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding: 0.75rem $margin-horizontal-lg;
+    }
+}

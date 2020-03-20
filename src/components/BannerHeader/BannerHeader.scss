@@ -1,0 +1,18 @@
+@import '../../variables.scss';
+
+.BannerHeader {
+    padding: $margin-horizontal;
+    background-color: $light-green;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media #{$mq-sm} {
+        flex-direction: row;
+    }
+
+    @media #{$mq-lg} {
+        padding: ($margin-horizontal-lg / 2) $margin-horizontal-lg;
+    }
+}

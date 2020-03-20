@@ -1,0 +1,27 @@
+@import '../../variables.scss';
+
+.BannerHeaderCard {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    
+    h1 {
+        font-weight: 300;
+        color: $dark-gray;
+        font-size: 1rem;
+    }
+
+    svg {
+        color: $green;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+
+        h1, h2 {
+            margin: 0;
+        }
+    }
+}
