@@ -2,8 +2,10 @@
 
 .UsersList {
     margin: 0 $margin-horizontal;
+    margin-bottom: 2rem;
 
     @media #{$mq-lg} {
-        margin: 0 $margin-horizontal-lg;
+        margin-left: $margin-horizontal-lg;
+        margin-right: $margin-horizontal-lg;
     }
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import RadioButton from '../RadioButton/RadioButton';
 import Checkbox from '../Checkbox/Checkbox';
 
@@ -22,7 +24,8 @@ const Input = props => {
                 value={props.value}
                 onChange={props.changed}
                 onFocus={props.focused}
-                onBlur={props.blured} />;
+                onBlur={props.blured}
+                placeholder={props.placeholder ? props.placeholder : null} />;
             break;
         case 'radio':
             input = (
@@ -68,22 +71,40 @@ const Input = props => {
             break;
     }
 
+    const label = props.label ? 
+        <div className="label">
+            <label>{props.label}</label>
+            {
+                props.shouldValidate && !props.shouldValidate.required ?
+                    <span className="optional">optional</span>
+                    : null
+            }
+        </div>
+        : null;
+
+    let instruction = null;
+    if(props.instruction) {
+        instruction = <div style={{
+            height: '2.2rem'
+        }}>
+            {props.inputFocused ? <p className="instruction">{props.instruction}</p> : null}
+        </div>;
+    }
+
+
+    const inputGroup = props.icon ?
+        <div className="inputGroup">
+            {input}
+            <div className="icon">
+                <FontAwesomeIcon icon={props.icon} />
+            </div>
+        </div> : input;
+
     return (
         <div className="Input">
-            <div className="label">
-                <label>{props.label}</label>
-                {
-                    !props.shouldValidate.required ?
-                        <span className="optional">optional</span>
-                        : null
-                }
-            </div>
-            {input}
-            {
-                props.inputFocused && props.instruction ?
-                <p className="instruction">{props.instruction}</p>
-                : null
-            }
+            {label}
+            {inputGroup}
+            {instruction}
         </div>
     );
 };

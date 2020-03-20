@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Table from '../../components/Table/Table';
 import TableHead from '../../components/TableHead/TableHead';
@@ -13,8 +14,11 @@ import ClickableIcon from '../../components/ClickableIcon/ClickableIcon';
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import Input from '../../components/Input/Input';
 
 import { deleteUser } from '../../store/actions';
+
+import { strIncludesStr } from '../../util/utility';
 
 import './UsersList.scss';
 
@@ -27,9 +31,16 @@ const UsersList = () => {
 
     const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
+    const [userListFilter, setUserListFilter] = useState('');
+    const [userListFilterFocused, setUserListFilterFocused] = useState('');
 
     const renderUsersTable = () => {
-        const usersRows = users.map(user => {
+        console.log(userListFilter);
+        const usersFiltered = userListFilter === '' ? 
+            users
+            : users.filter(user => strIncludesStr(user.name, userListFilter) || strIncludesStr(user.username, userListFilter));
+
+        const usersRows = usersFiltered.map(user => {
             const userAlbums = albums.filter(album => album.userId === user.id);
             const userAlbumsIds = userAlbums.map(album => album.id);
 
@@ -105,7 +116,21 @@ const UsersList = () => {
 
     return (
         <div className="UsersList">
-            <SectionTitle title="Users" />
+            <SectionTitle title="Users">
+                <Input 
+                    name="userListFilter"
+                    type="input"
+                    config={{
+                        type: 'text'
+                    }}
+                    icon={faSearch}
+                    placeholder="Filter table content"
+                    value={userListFilter}
+                    inputFocused={userListFilterFocused}
+                    changed={event => setUserListFilter(event.target.value)}
+                    focused={event => setUserListFilterFocused(true)}
+                    blured={event => setUserListFilterFocused(false)} />
+            </SectionTitle>
             <Link to="/users/new">
                 <Button
                     type="primary">Register User</Button>
