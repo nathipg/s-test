@@ -45,3 +45,5 @@ export const weekDaysGroup = days => {
 };
 
 export const capitalize = string => string[0].toUpperCase() + string.slice(1);
+
+export const getInitialLetters = string => string.split(' ').map(word => word[0].toUpperCase()).join('');

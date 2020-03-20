@@ -1,9 +1,9 @@
 @import '../../variables.scss';
 
 .UsersList {
-    margin: $margin-horizontal;
+    margin: 0 $margin-horizontal;
 
     @media #{$mq-lg} {
-        margin: $margin-horizontal-lg;
+        margin: 0 $margin-horizontal-lg;
     }
 }

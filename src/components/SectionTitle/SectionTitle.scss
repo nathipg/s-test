@@ -3,7 +3,7 @@
 .SectionTitle {
     display: flex;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 1rem;
 
     h1 {
         font-weight: 400;
@@ -17,8 +17,12 @@
         background-color: $gray;
         border: none;
     }
-}
 
-.SectionTitle .sideElement {
-    margin-left: 5vw;
+    .sideElement {
+        margin-left: 5vw;
+    }
+
+    @media #{$mq-lg} {
+        margin-top: 4rem;
+    }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { faPuzzlePiece, faTrophy, faMapSigns } from '@fortawesome/free-solid-svg-icons';
 
-import Logo from '../Logo/Logo';
+import MenuBar from '../MenuBar/MenuBar';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import BannerHeader from '../BannerHeader/BannerHeader';
 import BannerHeaderCard from '../BannerHeaderCard/BannerHeaderCard';
@@ -10,7 +10,7 @@ import BannerHeaderCard from '../BannerHeaderCard/BannerHeaderCard';
 const Header = () => {
     return (
         <div className="Header">
-            <Logo />
+            <MenuBar />
 
             <Breadcrumb />
 

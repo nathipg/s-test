@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
@@ -105,6 +106,10 @@ const UsersList = () => {
     return (
         <div className="UsersList">
             <SectionTitle title="Users" />
+            <Link to="/users/new">
+                <Button
+                    type="primary">Register User</Button>
+            </Link>
             {renderUsersTable()}
             {renderDeleteUserModal()}
         </div>

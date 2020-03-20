@@ -19,10 +19,13 @@ import Header from './components/Header/Header';
 import UsersList from './containers/UsersList/UsersList';
 import UsersForm from './containers/UsersForm/UsersForm';
 
+import { login } from './services/login';
+
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        login();
         dispatch(fetchUsers());
         dispatch(fetchAlbums());
         dispatch(fetchPhotos());
