@@ -91,7 +91,6 @@ const Input = props => {
         </div>;
     }
 
-
     const inputGroup = props.icon ?
         <div className="inputGroup">
             {input}
